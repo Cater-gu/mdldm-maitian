@@ -1,5 +1,5 @@
 #!/bin/zsh
-# 把麦田装成 macOS 开机自启服务（launchd）：守护进程 + 可选的远程访问隧道。
+# 把卡特自媒体工作台装成 macOS 开机自启服务（launchd）：守护进程 + 可选的远程访问隧道。
 #   scripts/install-launchd.sh            安装守护进程
 #   scripts/install-launchd.sh --tunnel   顺带安装 cloudflared 快速隧道（需要先 brew install cloudflared）
 #   scripts/install-launchd.sh --uninstall

@@ -1,7 +1,7 @@
-// 麦田 · iPhone 小组件（Scriptable）
+// 卡特自媒体工作台 · iPhone 小组件（Scriptable）
 // 用法：App Store 装 Scriptable → 新建脚本 → 粘贴本文件 → 桌面 / 锁屏添加 Scriptable 小组件，脚本选它。
-// 支持：桌面小号 / 中号 / 大号，锁屏长条 / 圆形 / 单行。点小组件打开麦田。
-// 麦田地址和小组件口令（config.web.widgetToken）：从麦田的 /widget 页面复制的版本已经填好。
+// 支持：桌面小号 / 中号 / 大号，锁屏长条 / 圆形 / 单行。点小组件打开卡特自媒体工作台。
+// 卡特自媒体工作台地址和小组件口令（config.web.widgetToken）：从卡特自媒体工作台的 /widget 页面复制的版本已经填好。
 // 头像取 config.web.avatar，署名取 config.web.owner；封面是最新一期的。
 const MAITIAN = '__MAITIAN_URL__';
 const TOKEN = '__WIDGET_TOKEN__';
@@ -88,8 +88,8 @@ function header(w, onDark) {
   const h = w.addStack(); h.centerAlignContent();
   avatarImg(h, 22, onDark ? C.white : new Color('#ffffff'));
   h.addSpacer(6);
-  text(h, data.owner || data.name || '麦田', 13, onDark ? C.white : C.ink);
-  if (data.owner) { h.addSpacer(4); text(h, '· ' + (data.name || '麦田'), 11, onDark ? C.white70 : C.dim, 'medium'); }
+  text(h, data.owner || data.name || '卡特自媒体工作台', 13, onDark ? C.white : C.ink);
+  if (data.owner) { h.addSpacer(4); text(h, '· ' + (data.name || '卡特自媒体工作台'), 11, onDark ? C.white70 : C.dim, 'medium'); }
   h.addSpacer();
   const t = new Date(data.now); text(h, (stale ? '⚠︎ ' : '') + `${t.getHours()}:${String(t.getMinutes()).padStart(2, '0')}`, 11, stale ? C.down : onDark ? C.white70 : C.dim, 'medium');
 }
@@ -139,7 +139,7 @@ const COVER = data && data.latest ? COVER_IMG : null;
 
 if (!data) {
   w.backgroundGradient = bgGradient();
-  text(w, '🌾 连不上麦田', 14); w.addSpacer(4); text(w, '检查麦田地址和小组件口令', 11, C.dim, 'medium');
+  text(w, '🌾 连不上卡特自媒体工作台', 14); w.addSpacer(4); text(w, '检查卡特自媒体工作台地址和小组件口令', 11, C.dim, 'medium');
 } else if (fam === 'accessoryInline') {
   // 锁屏单行（时间上方）：系统只取一行文字和一个图标
   w.addText(`🌾 ${fmt(data.fans.total)} · 今日 ${sign(data.fans.today)}`);
@@ -174,7 +174,7 @@ if (!data) {
 } else if (fam === 'small') {
   w.backgroundGradient = bgGradient(); w.setPadding(13, 14, 13, 14);
   const h = w.addStack(); h.centerAlignContent(); avatarImg(h, 30, new Color('#ffffff')); h.addSpacer(7);
-  const who = h.addStack(); who.layoutVertically(); text(who, data.owner || data.name || '麦田', 12); text(who, stale ? '⚠︎ 旧数据' : (data.owner ? data.name || '麦田' : ''), 10, stale ? C.down : C.dim, 'medium');
+  const who = h.addStack(); who.layoutVertically(); text(who, data.owner || data.name || '卡特自媒体工作台', 12); text(who, stale ? '⚠︎ 旧数据' : (data.owner ? data.name || '卡特自媒体工作台' : ''), 10, stale ? C.down : C.dim, 'medium');
   w.addSpacer();
   fansBlock(w, 26);
   if (data.site) { w.addSpacer(3); const r = w.addStack(); text(r, '7天 ', 10.5, C.dim, 'medium'); text(r, money(data.site.revenue), 11, C.gold); text(r, ` · 会员 ${fmt(data.site.vip)}`, 10.5, C.dim, 'medium'); }

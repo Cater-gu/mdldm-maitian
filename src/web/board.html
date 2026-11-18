@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#f5f5f7">
-<title>麦田</title>
-<meta name="apple-mobile-web-app-title" content="麦田">
+<title>卡特自媒体工作台</title>
+<meta name="apple-mobile-web-app-title" content="卡特自媒体工作台">
 <link rel="apple-touch-icon" href="/static/icon-180.png">
 <link rel="icon" href="/static/icon-180.png">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -169,7 +169,7 @@ function render() {
   };
   const f0 = O.feed[0];
   $('#screen').innerHTML = `
-  <div class="top"><div class="logo">麦<i>田</i></div><div class="tag">内容与粉丝监控</div>
+  <div class="top"><div class="logo">${esc(O.name || '卡特自媒体工作台')}</div>
     <div class="nav"><a class="on" href="/">大屏</a><a href="/p#/traffic">流量</a><a href="/p#/calendar">日历</a><a href="/p#/convert">转化</a><a href="/p#/archive">档案</a><a href="/p#/system">系统</a></div>
     <div class="lights"><span class="light ok">守护进程 运行中</span><span class="light ${h.nas ? 'ok' : 'bad'}">NAS ${h.nas ? '已挂载' : '读不到'}</span><span class="light ${h.chrome ? 'ok' : 'bad'}">专用浏览器 ${h.chrome ? '在线' : '没开'}</span>
       <span class="light ${!loginOk ? 'bad' : checked ? 'ok' : 'warn'}">平台登录 ${!loginOk ? '有掉线' : checked ? '今日已检' : '今天还没检'}</span></div>
@@ -211,7 +211,7 @@ function tick() {
 }
 async function load() {
   try { const r = await fetch('/api/overview'); if (!r.ok) throw new Error(r.status); O = await r.json(); if (!O.siteOn) PL = PL.filter(p => p !== 'zsz'); else { if (O.siteName) PN.zsz = O.siteName; if (O.siteLogo) LOGO.zsz = { img: '/site-logo' }; } render(); }
-  catch (e) { if (!O) $('#screen').innerHTML = `<div class="empty">连不上麦田服务（${esc(e.message)}）</div>`; else console.error(e); }
+  catch (e) { if (!O) $('#screen').innerHTML = `<div class="empty">连不上工作台服务（${esc(e.message)}）</div>`; else console.error(e); }
 }
 const tip = $('#tip');
 document.addEventListener('mousemove', (e) => { const t = e.target.closest && e.target.closest('[data-tip]'); if (!t) { tip.style.display = 'none'; return; } tip.textContent = t.dataset.tip; tip.style.display = 'block'; const w = tip.offsetWidth; tip.style.left = Math.min(innerWidth - w - 8, e.clientX + 14) + 'px'; tip.style.top = Math.max(8, e.clientY - 34) + 'px'; });

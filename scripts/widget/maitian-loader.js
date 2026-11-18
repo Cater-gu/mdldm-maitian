@@ -1,6 +1,6 @@
-// 麦田 · iPhone 小组件加载器（Scriptable）—— 只需粘贴一次，以后自动更新
-// 每次刷新从麦田拉最新的小组件代码（/api/widget/code）来运行；拉不到就用上次存下的那份。
-// 麦田地址和小组件口令：从麦田的 /widget 页面复制的版本已经填好。
+// 卡特自媒体工作台 · iPhone 小组件加载器（Scriptable）—— 只需粘贴一次，以后自动更新
+// 每次刷新从卡特自媒体工作台拉最新的小组件代码（/api/widget/code）来运行；拉不到就用上次存下的那份。
+// 卡特自媒体工作台地址和小组件口令：从卡特自媒体工作台的 /widget 页面复制的版本已经填好。
 const MAITIAN = '__MAITIAN_URL__';
 const TOKEN = '__WIDGET_TOKEN__';
 
@@ -16,7 +16,7 @@ try {
 }
 if (!code) {
   const w = new ListWidget(); w.url = MAITIAN;
-  const t = w.addText('🌾 连不上麦田'); t.font = Font.boldSystemFont(14);
+  const t = w.addText('🌾 连不上卡特自媒体工作台'); t.font = Font.boldSystemFont(14);
   if (config.runsInWidget) Script.setWidget(w); else await w.presentSmall();
   Script.complete();
 } else {

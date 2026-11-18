@@ -1,7 +1,7 @@
 // 从发布素材 md 生成 publish.json，写进 NAS 工程目录，并校验。
 // 用法：node src/make-publish.mjs <发布素材.md> <工程目录> [--require 账号名标签] [--schedule "2026-11-05 18:00"]
 //
-// md 约定（发布 skill 的模板，见麦田仓库 skills/maitian-publish）：
+// md 约定（发布 skill 的模板，见卡特自媒体工作台仓库 skills/maitian-publish）：
 //   头部：「> 序号：31」「> 定时发布：2026-11-05 18:00」
 //   ## 三、B站       **标题：** / **简介：** / **标签：**（#标签 空格分隔）
 //   ## 四、小红书     **标题：** / **正文：**（正文最后一行是 #话题）
@@ -17,7 +17,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { pathToFileURL } from 'node:url';
 import { pluginDir } from './plugin.mjs';
-// 字段规则来自麦田发布助手（默认是商店版，跟着插件自动更新）
+// 字段规则来自卡特自媒体工作台发布助手（默认是商店版，跟着插件自动更新）
 const { validate } = await import(pathToFileURL(join(pluginDir(), 'lib', 'bundle.js')).href);
 
 const args = process.argv.slice(2);
@@ -64,7 +64,7 @@ if (schedule && !/T/.test(schedule)) schedule = schedule.trim().replace(' ', 'T'
 
 // 工程目录里的文件
 const files = [];
-const walk = (d) => readdirSync(d).forEach(n => { const p = join(d, n); statSync(p).isDirectory() ? walk(p) : files.push(relative(dir, p)); });
+const walk = (d) => readdirSync(d).forEach(n => { const p = join(d, n); statSync(p).isDirectory() ? walk(p) : files.push(relative(dir, p).split('\\').join('/')); });
 walk(dir);
 const video = files.includes('成片.mp4') ? '成片.mp4' : null;
 const covers = {};

@@ -1,5 +1,5 @@
 // 校验一期的 publish.json：文件齐全、各平台字段和字数、成片是 faststart。
-// 字段规则来自麦田发布助手的 lib/bundle.js，跟着插件一起更新。
+// 字段规则来自卡特自媒体工作台发布助手的 lib/bundle.js，跟着插件一起更新。
 import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url';
 import { pluginDir } from './plugin.mjs';
 
@@ -7,7 +7,7 @@ export async function validateProject(dir) {
   const { validate, PLATFORMS, len } = await import(pathToFileURL(path.join(pluginDir(), 'lib', 'bundle.js')).href);
   const b = JSON.parse(fs.readFileSync(path.join(dir, 'publish.json'), 'utf8'));
   const files = new Set();
-  const walk = (d) => fs.readdirSync(d).forEach(n => { const p = path.join(d, n); fs.statSync(p).isDirectory() ? walk(p) : files.add(path.relative(dir, p)); });
+  const walk = (d) => fs.readdirSync(d).forEach(n => { const p = path.join(d, n); fs.statSync(p).isDirectory() ? walk(p) : files.add(path.relative(dir, p).split('\\').join('/')); });
   walk(dir);
   const { errors, warnings } = validate(b, files);
   // moov 必须在文件头，否则小红书报「无视频流信息」、抖音不出表单
